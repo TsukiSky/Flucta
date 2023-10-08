@@ -7,9 +7,9 @@ import lombok.Data;
 public class Edge {
     private Vertex from;
     private Vertex to;
-    private Computable value;
+    private Computable<?> value;
 
-    Edge(Vertex from, Vertex to, Computable value) {
+    Edge(Vertex from, Vertex to, Computable<?> value) {
         this.from = from;
         this.to = to;
         this.value = value;

@@ -3,19 +3,18 @@ package com.flucta.core.engine.execution;
 import com.flucta.core.engine.task.Task;
 import com.flucta.core.graph.Graph;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class ExecutionManager {
     Graph graph;
-    private final Queue<Task> tasks;
+    private final LinkedBlockingQueue<Task> tasks;
     private final int numThreads;
 
     ExecutionManager(Graph graph, int numThreads) {
         this.graph = graph;
-        this.tasks = new LinkedList<>();
+        this.tasks = new LinkedBlockingQueue<>();
         this.numThreads = numThreads;
     }
 

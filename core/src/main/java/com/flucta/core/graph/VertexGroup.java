@@ -10,8 +10,8 @@ import java.util.List;
 public class VertexGroup {
     private List<Vertex> vertices;
 
-    public VertexGroup() {
-        this.vertices = new ArrayList<>();
+    public VertexGroup(List<Vertex> vertices) {
+        this.vertices = vertices;
     }
 
     /**

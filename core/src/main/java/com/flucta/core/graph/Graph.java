@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Graph extends VertexGroup {
     public Graph(List<Vertex> vertices) {
-        super();
-        this.setVertices(vertices);
+        super(vertices);
     }
 }

@@ -1,4 +1,4 @@
-package com.flucta.runtime.work;
+package com.flucta.runtime.common;
 
 import com.flucta.core.graph.Graph;
 
