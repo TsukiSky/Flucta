@@ -9,7 +9,6 @@ import java.util.List;
 @Data
 public class VertexGroup {
     private List<Vertex> vertices;
-
     public VertexGroup(List<Vertex> vertices) {
         this.vertices = vertices;
     }

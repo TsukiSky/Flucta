@@ -31,7 +31,6 @@ public abstract class Vertex {
             }
         }
         Edge edge = new Edge(this, toVertex, null);
-
         outgoingEdges.add(edge);
         toVertex.incomingEdges.add(edge);
     }

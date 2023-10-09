@@ -12,7 +12,7 @@ public class ExecutionManager {
     private final LinkedBlockingQueue<Task> tasks;
     private final int numThreads;
 
-    ExecutionManager(Graph graph, int numThreads) {
+    public ExecutionManager(Graph graph, int numThreads) {
         this.graph = graph;
         this.tasks = new LinkedBlockingQueue<>();
         this.numThreads = numThreads;
