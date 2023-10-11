@@ -1,11 +1,11 @@
-package com.flucta.example.bfs;
+package com.flucta.example.grepsum;
 
 import com.flucta.core.common.Computable;
 
-public class BFSValue implements Computable<Integer> {
+public class GrepSumValue implements Computable<Integer> {
     public int value;
 
-    public BFSValue(int value) {
+    public GrepSumValue(int value) {
         this.value = value;
     }
 

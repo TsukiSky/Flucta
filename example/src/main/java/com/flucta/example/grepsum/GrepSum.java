@@ -1,4 +1,4 @@
-package com.flucta.example.bfs;
+package com.flucta.example.grepsum;
 
 import com.flucta.core.graph.Graph;
 import com.flucta.core.graph.vertex.Vertex;
@@ -6,7 +6,7 @@ import com.flucta.runtime.launcher.GraphProcessEnvironment;
 
 import java.util.Arrays;
 
-public class BFS {
+public class GrepSum {
     public static void main(String[] args) {
         GraphProcessEnvironment env = GraphProcessEnvironment.getGraphProcessEnvironment();
         Graph<Integer> graph = loadGraph();
@@ -21,9 +21,9 @@ public class BFS {
     }
 
     private static Graph<Integer> buildTestGraph() {
-        Vertex<Integer> vertex0 = new BFSVertex(0, new BFSValue(5));
-        Vertex<Integer> vertex1 = new BFSVertex(1, new BFSValue(10));
-        Vertex<Integer> vertex2 = new BFSVertex(2, new BFSValue(20));
+        Vertex<Integer> vertex0 = new GrepSumVertex(0, new GrepSumValue(5));
+        Vertex<Integer> vertex1 = new GrepSumVertex(1, new GrepSumValue(10));
+        Vertex<Integer> vertex2 = new GrepSumVertex(2, new GrepSumValue(20));
 
         vertex0.addNeighbor(vertex1);
         vertex1.addNeighbor(vertex2);

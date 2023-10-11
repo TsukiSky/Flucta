@@ -1,4 +1,4 @@
-package com.flucta.example.bfs;
+package com.flucta.example.grepsum;
 
 import com.flucta.core.common.Computable;
 import com.flucta.core.engine.task.VertexTask;
@@ -6,8 +6,8 @@ import com.flucta.core.graph.vertex.Edge;
 import com.flucta.core.graph.vertex.Message;
 import com.flucta.core.graph.vertex.Vertex;
 
-public class BFSVertex extends Vertex<Integer> {
-    public BFSVertex(int vertexId, Computable<Integer> value) {
+public class GrepSumVertex extends Vertex<Integer> {
+    public GrepSumVertex(int vertexId, Computable<Integer> value) {
         super(vertexId, value);
     }
 
