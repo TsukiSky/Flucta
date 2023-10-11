@@ -24,4 +24,8 @@ public class ExecutionManager {
             executorService.execute(tasks.poll());
         }
     }
+
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
 }

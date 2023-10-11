@@ -1,7 +1,9 @@
 package com.flucta.runtime.launcher;
 
 import com.flucta.core.engine.execution.ExecutionManager;
+import com.flucta.core.engine.task.VertexTask;
 import com.flucta.core.graph.Graph;
+import com.flucta.core.graph.vertex.Vertex;
 
 /**
  * Running environment for graph processing
@@ -31,4 +33,13 @@ public class GraphProcessEnvironment {
         this.executionManager = new ExecutionManager(this.graph, numThreads);
         this.executionManager.execute();
     }
+
+    public void addStartVertex(Vertex vertex) {
+        // TODO: implement addStartVertex method
+        this.executionManager.addTask(new VertexTask(0, vertex));
+    }
+
+//    public void setStartTask(Task task) {
+//        this.executionManager.addTask(task);
+//    }
 }

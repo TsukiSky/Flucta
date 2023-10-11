@@ -4,12 +4,13 @@ import com.flucta.core.common.Computable;
 import lombok.Data;
 
 @Data
-public class Edge {
-    private Vertex from;
-    private Vertex to;
-    private Computable<?> value;
+public class Edge<T> {
+    private Vertex<T> from;
+    private Vertex<T> to;
+    private Computable<T> value;
+//    private int value;
 
-    Edge(Vertex from, Vertex to, Computable<?> value) {
+    Edge(Vertex<T> from, Vertex<T> to, Computable<T> value) {
         this.from = from;
         this.to = to;
         this.value = value;

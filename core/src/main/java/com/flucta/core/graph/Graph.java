@@ -4,8 +4,8 @@ import com.flucta.core.graph.vertex.Vertex;
 
 import java.util.List;
 
-public class Graph extends VertexGroup {
-    public Graph(List<Vertex> vertices) {
+public class Graph<T> extends VertexGroup<T> {
+    public Graph(List<Vertex<T>> vertices) {
         super(vertices);
     }
 }
