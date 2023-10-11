@@ -1,6 +1,7 @@
 package com.flucta.core.graph.vertex;
 
 import com.flucta.core.common.Computable;
+import com.flucta.core.engine.execution.ExecutionManager;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public abstract class Vertex<T> {
     private VertexState state;
     private Computable<T> value;
     private LinkedBlockingQueue<Message<T>> incomingMessages;
+    private ExecutionManager executionManager;
 
     public Vertex(int vertexId, Computable<T> value) {
         this.id = vertexId;
@@ -32,19 +34,28 @@ public abstract class Vertex<T> {
         toVertex.incomingMessages.add(msg);
     }
 
+    public void sendMessageAndWakeup(Message<T> msg, Vertex<T> toVertex) {
+        sendMessage(msg, toVertex);
+
+    }
+
     /**
      * Add an edge to this vertex
      */
-    public void addEdge(Vertex<T> toVertex) {
+    public void addNeighbor(Vertex<T> toVertex, Computable<T> value) {
         for (Edge<T> edge: outgoingEdges) {
             if (edge.getTo().getId() == toVertex.getId()) {
                 // edge already exist
                 return;
             }
         }
-        Edge<T> edge = new Edge<>(this, toVertex, null);
+        Edge<T> edge = new Edge<>(this, toVertex, value);
         outgoingEdges.add(edge);
         toVertex.incomingEdges.add(edge);
+    }
+
+    public void addNeighbor(Vertex<T> vertex) {
+        this.addNeighbor(vertex, null);
     }
 
     /**
@@ -59,17 +70,5 @@ public abstract class Vertex<T> {
      */
     public enum VertexState {
         ACTIVE, DOWN
-    }
-
-    public void addNeighbor(Vertex<T> vertex, Computable<T> value) {
-        Edge<T> edge = new Edge<T>(this, vertex, value);
-        this.outgoingEdges.add(edge);
-        vertex.incomingEdges.add(edge);
-    }
-
-    public void addNeighbor(Vertex<T> vertex) {
-        Edge<T> edge = new Edge<T>(this, vertex, null);
-        this.outgoingEdges.add(edge);
-        vertex.incomingEdges.add(edge);
     }
 }

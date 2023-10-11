@@ -8,11 +8,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ExecutionManager {
-    Graph graph;
+    Graph<?> graph;
     private final LinkedBlockingQueue<Task> tasks;
     private final int numThreads;
 
-    public ExecutionManager(Graph graph, int numThreads) {
+    public ExecutionManager(Graph<?> graph, int numThreads) {
         this.graph = graph;
         this.tasks = new LinkedBlockingQueue<>();
         this.numThreads = numThreads;
@@ -20,8 +20,10 @@ public class ExecutionManager {
 
     public void execute() {
         ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
-        while (!tasks.isEmpty()) {
-            executorService.execute(tasks.poll());
+        while (true) {
+            if (!tasks.isEmpty()) {
+                executorService.execute(tasks.poll());
+            }
         }
     }
 

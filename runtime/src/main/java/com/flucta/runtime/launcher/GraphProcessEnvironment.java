@@ -9,7 +9,7 @@ import com.flucta.core.graph.vertex.Vertex;
  * Running environment for graph processing
  */
 public class GraphProcessEnvironment {
-    Graph graph;
+    Graph<?> graph;
     ExecutionManager executionManager;
     int numThreads = 1;     // number of processing thread is set to 1 at the beginning
 
@@ -25,21 +25,22 @@ public class GraphProcessEnvironment {
         return graphProcessEnv;
     }
 
-    public void setGraph(Graph graph) {
+    public void setGraph(Graph<?> graph) {
         this.graph = graph;
     }
 
     public void execute() {
-        this.executionManager = new ExecutionManager(this.graph, numThreads);
+        if (this.executionManager == null) {
+            this.executionManager = new ExecutionManager(this.graph, numThreads);
+        }
         this.executionManager.execute();
     }
 
-    public void addStartVertex(Vertex vertex) {
+    public void addStartVertex(Vertex<?> vertex) {
         // TODO: implement addStartVertex method
-        this.executionManager.addTask(new VertexTask(0, vertex));
+        if (this.executionManager == null) {
+            this.executionManager = new ExecutionManager(this.graph, numThreads);
+        }
+        this.executionManager.addTask(new VertexTask(this.executionManager, 0, vertex));
     }
-
-//    public void setStartTask(Task task) {
-//        this.executionManager.addTask(task);
-//    }
 }

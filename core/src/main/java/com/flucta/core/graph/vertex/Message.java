@@ -14,7 +14,7 @@ public class Message<T> {
     }
 
     public Message(Computable<T> content) {
-        new Message<>(content, MessageType.NORMAL);
+        this(content, MessageType.NORMAL);
     }
 
     public enum MessageType {
