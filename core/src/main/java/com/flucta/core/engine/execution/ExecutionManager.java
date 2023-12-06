@@ -23,6 +23,9 @@ public class ExecutionManager {
         while (true) {
             if (!tasks.isEmpty()) {
                 executorService.execute(tasks.poll());
+            } else if (graph.isAllVerticesInactive()) {
+                executorService.shutdown();
+                return;
             }
         }
     }

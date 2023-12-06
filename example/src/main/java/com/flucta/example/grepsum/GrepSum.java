@@ -1,6 +1,7 @@
 package com.flucta.example.grepsum;
 
 import com.flucta.core.graph.Graph;
+import com.flucta.core.graph.vertex.Message;
 import com.flucta.core.graph.vertex.Vertex;
 import com.flucta.runtime.launcher.GraphProcessEnvironment;
 
@@ -8,10 +9,10 @@ import java.util.Arrays;
 
 public class GrepSum {
     public static void main(String[] args) {
-        GraphProcessEnvironment env = GraphProcessEnvironment.getGraphProcessEnvironment();
+        GraphProcessEnvironment<Integer> env = new GraphProcessEnvironment<>();
         Graph<Integer> graph = loadGraph();
         env.setGraph(graph);
-        env.addStartVertex(graph.getVertexById(0));
+        env.addStartVertex(graph.getVertexById(0), new Message<>(new GrepSumValue(0)));
         env.execute();
     }
 

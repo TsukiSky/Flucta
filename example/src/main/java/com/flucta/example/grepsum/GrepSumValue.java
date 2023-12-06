@@ -10,22 +10,27 @@ public class GrepSumValue implements Computable<Integer> {
     }
 
     @Override
-    public Integer add(Computable<Integer> computable) {
-        return this.value + computable.getValue();
+    public GrepSumValue add(Computable<Integer> computable) {
+        return new GrepSumValue(this.value + computable.getValue());
     }
 
     @Override
-    public Integer minus(Computable<Integer> computable) {
-        return this.value - computable.getValue();
+    public GrepSumValue minus(Computable<Integer> computable) {
+        return new GrepSumValue(this.value - computable.getValue());
     }
 
     @Override
-    public Integer multiply(Computable<Integer> computable) {
-        return this.value * computable.getValue();
+    public GrepSumValue multiply(Computable<Integer> computable) {
+        return new GrepSumValue(this.value * computable.getValue());
     }
 
     @Override
     public Integer getValue() {
         return this.value;
+    }
+
+    @Override
+    public void setValue(Integer value) {
+        this.value = value;
     }
 }

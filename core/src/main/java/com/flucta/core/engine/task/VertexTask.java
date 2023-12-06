@@ -6,8 +6,8 @@ import com.flucta.core.graph.vertex.Vertex;
 public class VertexTask extends Task {
     private final Vertex<?> vertex;
 
-    public VertexTask(ExecutionManager executionManager, int taskId, Vertex<?> vertex) {
-        super(executionManager, taskId);
+    public VertexTask(ExecutionManager executionManager, Vertex<?> vertex) {
+        super(executionManager);
         this.vertex = vertex;
         this.vertex.setExecutionManager(executionManager);
     }

@@ -2,6 +2,7 @@ package com.flucta.core.graph.vertex;
 
 import com.flucta.core.common.Computable;
 import com.flucta.core.engine.execution.ExecutionManager;
+import com.flucta.core.engine.task.VertexTask;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -14,17 +15,17 @@ public abstract class Vertex<T> {
     private List<Edge<T>> outgoingEdges;
     private List<Edge<T>> incomingEdges;
     private VertexState state;
-    private Computable<T> value;
+    private Computable<T> computable;
     private LinkedBlockingQueue<Message<T>> incomingMessages;
     private ExecutionManager executionManager;
 
-    public Vertex(int vertexId, Computable<T> value) {
+    public Vertex(int vertexId, Computable<T> computable) {
         this.id = vertexId;
         this.outgoingEdges = new ArrayList<>();
         this.incomingEdges = new ArrayList<>();
-        this.state = VertexState.ACTIVE;        // the initial state is set to ACTIVE by default
+        this.state = VertexState.DOWN;        // the initial state is set to ACTIVE by default
         this.incomingMessages = new LinkedBlockingQueue<>();
-        this.value = value;
+        this.computable = computable;
     }
 
     /**
@@ -36,7 +37,8 @@ public abstract class Vertex<T> {
 
     public void sendMessageAndWakeup(Message<T> msg, Vertex<T> toVertex) {
         sendMessage(msg, toVertex);
-
+        executionManager.addTask(new VertexTask(executionManager, toVertex));
+        toVertex.setState(VertexState.ACTIVE);
     }
 
     /**
