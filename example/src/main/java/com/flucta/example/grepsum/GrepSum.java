@@ -12,7 +12,7 @@ public class GrepSum {
         GraphProcessEnvironment<Integer> env = new GraphProcessEnvironment<>();
         Graph<Integer> graph = loadGraph();
         env.setGraph(graph);
-        env.addStartVertex(graph.getVertexById(0), new Message<>(new GrepSumValue(0)));
+        env.addStartVertex(graph.getVertexById(1), new Message<>(new GrepSumValue(0)));
         env.execute();
     }
 

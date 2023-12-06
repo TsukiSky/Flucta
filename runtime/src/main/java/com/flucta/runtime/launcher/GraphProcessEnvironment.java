@@ -13,7 +13,7 @@ import com.flucta.runtime.Configuration;
 public class GraphProcessEnvironment<T> {
     Graph<?> graph;
     ExecutionManager executionManager;
-    int numThreads = 1;     // number of processing thread is set to 1 at the beginning
+    int numThreads = 4;     // number of processing thread is set to 1 at the beginning
 
 
     public GraphProcessEnvironment() {

@@ -37,8 +37,8 @@ public abstract class Vertex<T> {
 
     public void sendMessageAndWakeup(Message<T> msg, Vertex<T> toVertex) {
         sendMessage(msg, toVertex);
-        executionManager.addTask(new VertexTask(executionManager, toVertex));
         toVertex.setState(VertexState.ACTIVE);
+        executionManager.addTask(new VertexTask(executionManager, toVertex));
     }
 
     /**
